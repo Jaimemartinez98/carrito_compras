@@ -56,23 +56,34 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('productos.create')}}">Agregar Producto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('productos.index')}}">Listar Productos</a>
-                            </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('ventas.create')}}">Compras</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('ventas.index')}}">Carrito</a>
-                            </li>
+                            @if (auth()->user()->perfil_id == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('productos.create') }}">Agregar Producto</a>
+                                </li>
+                            @endif
+                            @if (auth()->user()->perfil_id == 1)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('productos.index') }}">Listar Productos</a>
+                                </li>
+                            @endif
+                            @if (auth()->user()->perfil_id == 1 || auth()->user()->perfil_id == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ventas.create') }}">Compras</a>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('ventas.show')}}">Historico Compras</a>
-                            </li>
+                            @if (auth()->user()->perfil_id == 1 || auth()->user()->perfil_id == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ventas.index') }}">Carrito</a>
+                                </li>
+                            @endif
+
+                            @if (auth()->user()->perfil_id == 1 || auth()->user()->perfil_id == 2)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ventas.show') }}">Historico Compras</a>
+                                </li>
+                            @endif
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -82,7 +93,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
