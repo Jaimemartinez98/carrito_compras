@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/productos', [App\Http\Controllers\ProductosController::class, 'index'])->name('productos.index');
+Route::get('/productos', [App\Http\Controllers\ProductosController::class, 'index'])->name('productos.index')->middleware('role:1,3');
 Route::get('/productos/create', [App\Http\Controllers\ProductosController::class, 'create'])->name('productos.create');
 Route::post('/productos/store', [App\Http\Controllers\ProductosController::class, 'store'])->name('productos.store');
 Route::get('/productos/edit/{id}', [App\Http\Controllers\ProductosController::class, 'edit'])->name('productos.edit');
